@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "87239282704",
+    "project_id": "itl-status-ftr-beta",
+    "storage_bucket": "itl-status-ftr-beta.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:87239282704:android:67c6d39b510414f702ba95",
+        "android_client_info": {
+          "package_name": "com.example.itlstatusb"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "87239282704-vgmbksqr79li98p6v5odn7brrnmqgfdm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAAwzXxk3wviVkAXKLERztJgZcdPqMOc_Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "87239282704-vgmbksqr79li98p6v5odn7brrnmqgfdm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
