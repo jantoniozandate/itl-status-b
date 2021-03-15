@@ -5,10 +5,11 @@ import 'package:itlstatusb/src/providers/push_notifications.provider.dart';
 // Pages
 import 'package:itlstatusb/src/pages/home.page.dart';
 import 'package:itlstatusb/src/pages/message.page.dart';
+import 'package:itlstatusb/src/pages/Login/login.page.dart';
 
 
 // Constants
-import 'constants.dart';
+// import 'constants.dart';
 
 void main() {
   runApp(MyApp());
@@ -51,6 +52,7 @@ class _MyAppState extends State<MyApp> {
         'welcome': (BuildContext context) => WelcomePage(),
         'home': (BuildContext context) => HomePage(),
         'message': (BuildContext context) => MessagePage(),
+        'login': (BuildContext context) => LoginPage(),
       },
       navigatorKey: navigatorKey,
     );
