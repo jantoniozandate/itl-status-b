@@ -37,6 +37,7 @@ dependencies:
   stacked_services: ^0.4.3
   http: 
   flutter_dotenv: 
+  flutter_secure_storage:
 
 dev_dependencies:
   flutter_test:
