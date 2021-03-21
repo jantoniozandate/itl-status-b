@@ -10,7 +10,9 @@ class WelcomePage extends StatelessWidget {
     return ViewModelBuilder<WelcomePageModel>.reactive(
         viewModelBuilder: () => WelcomePageModel(),
         builder: (context, model, child) => Scaffold(
-              body: WelcomeBody(model: model,),
+              body: WelcomeBody(
+                model: model,
+              ),
             ));
   }
 }
