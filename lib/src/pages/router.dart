@@ -1,7 +1,8 @@
 // import 'package:itlstatusb/src/models/post.dart';
 // import 'package:itlstatusb/src/ui/views/create_post_view.dart';
 import 'package:itlstatusb/src/pages/Welcome/welcome.page.dart';
-import 'package:itlstatusb/src/pages/home.page.dart';
+// import 'package:itlstatusb/src/pages/home.page.dart';
+import 'package:itlstatusb/src/pages/Home/home.page.dart';
 import 'package:flutter/material.dart';
 import 'package:itlstatusb/constants.dart';
 import 'package:itlstatusb/src/pages/Login/login.page.dart';
@@ -23,6 +24,8 @@ Route<dynamic> generateRoute(RouteSettings settings) {
         routeName: settings.name,
         viewToShow: HomePage(),
       );
+    case HomePageRoute:
+      return _getPageRoute(routeName: settings.name, viewToShow: HomePage());
     // case :
     //   var postToEdit = settings.arguments as Post;
     //   return _getPageRoute(

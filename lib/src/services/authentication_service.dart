@@ -86,6 +86,7 @@ class AuthenticationService {
     if (user != null) {
       _currentUser = user;
       String value = user.toJson().toString();
+      await storage.delete(key: SESSION_KEY);
       await storage.write(key: SESSION_KEY, value: value);
       // _currentUser = await _firestoreService.getUser(user.uid);
     }

@@ -11,7 +11,7 @@ class LoginPageModel extends BaseModel {
   final NavigationService _navigationService = locator<NavigationService>();
 
   void navigateToHome() {
-    _navigationService.navigateTo(LoginPageRoute);
+    _navigationService.navigateTo(HomePageRoute);
   }
 
   void navigateToRegister() {

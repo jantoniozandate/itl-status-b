@@ -9,6 +9,6 @@ class LoginPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return ViewModelBuilder<LoginPageModel>.reactive(
         viewModelBuilder: () => LoginPageModel(),
-        builder: (context, model, child) => Scaffold(body: Body()));
+        builder: (context, model, child) => Scaffold(body: Body(model: model)));
   }
 }

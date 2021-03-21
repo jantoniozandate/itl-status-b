@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:itlstatusb/locator.dart';
+import 'package:itlstatusb/src/pages/Login/login.page.model.dart';
 import 'package:itlstatusb/src/services/authentication_service.dart';
 import 'package:itlstatusb/src/services/dialog_service.dart';
 import './background.login.dart';
@@ -14,21 +15,21 @@ import 'package:itlstatusb/src/models/user.dart';
 import 'package:itlstatusb/src/services/api_service.dart';
 
 class Body extends StatefulWidget {
-  final String login;
-  final String password;
+  final LoginPageModel model;
+  const Body({Key key, this.model}) : super(key: key);
 
-  const Body({Key key, this.login, this.password}) : super(key: key);
-
-  @override
   _BodyState createState() => _BodyState();
 }
 
 class _BodyState extends State<Body> {
   String login;
   String password;
-
   final DialogService _dialogService = locator<DialogService>();
-  final AuthenticationService _authenticationService = locator<AuthenticationService>();
+  final AuthenticationService _authenticationService =
+      locator<AuthenticationService>();
+
+  @override
+  Body get widget => super.widget;
 
   @override
   Widget build(BuildContext context) {
@@ -66,9 +67,22 @@ class _BodyState extends State<Body> {
             RoundedButton(
               text: "LOGIN",
               press: () {
-                _authenticationService.loginWithEmail(email: login, password: password);
+                _authenticationService
+                    .loginWithEmail(email: login, password: password)
+                    .then((result) {
+                  if (result) {
+                    try {
+                      super.widget.model.navigateToHome();
+                    } catch (e) {
+                      print(e);
+                      _dialogService.showDialog(
+                          title: 'Algo salió mal :(',
+                          description: 'Credenciales invalidas');
+                    }
+                  }
+                });
                 // doLogin(login, password).then((result) {
-                  
+
                 //   // print('Login terminado');
                 //   // print(result);
                 //   // _dialogService.showDialog(title: 'Success', description: result.toString());

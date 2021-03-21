@@ -8,6 +8,7 @@ Future<User> doLogin(email, password) async {
     'login': email,
     'password': password
   }, headers: {'X-API': xAPIKey});
+  if (result.statusCode >= 300) return null;
   var jsonResponse = convert.jsonDecode(result.body)['data'];
   User user = User.fromData(jsonResponse);
   return user;
