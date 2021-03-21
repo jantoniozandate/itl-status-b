@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:itlstatusb/locator.dart';
+import 'package:itlstatusb/src/services/authentication_service.dart';
 import 'package:itlstatusb/src/services/dialog_service.dart';
 import './background.login.dart';
 // import 'package:itlstatusb/Screens/Signup/signup_screen.dart';
@@ -27,6 +28,7 @@ class _BodyState extends State<Body> {
   String password;
 
   final DialogService _dialogService = locator<DialogService>();
+  final AuthenticationService _authenticationService = locator<AuthenticationService>();
 
   @override
   Widget build(BuildContext context) {
@@ -64,11 +66,13 @@ class _BodyState extends State<Body> {
             RoundedButton(
               text: "LOGIN",
               press: () {
-                doLogin(login, password).then((result) {
-                  print('Login terminado');
-                  print(result);
-                  _dialogService.showDialog(title: 'Success', description: result.toString());
-                });
+                _authenticationService.loginWithEmail(email: login, password: password);
+                // doLogin(login, password).then((result) {
+                  
+                //   // print('Login terminado');
+                //   // print(result);
+                //   // _dialogService.showDialog(title: 'Success', description: result.toString());
+                // });
               },
             ),
             SizedBox(height: size.height * 0.03),
