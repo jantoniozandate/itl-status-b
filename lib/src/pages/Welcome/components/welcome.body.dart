@@ -14,6 +14,7 @@ class WelcomeBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    this.model.checkLogin();
     return Background(
       child: SingleChildScrollView(
         child: Column(

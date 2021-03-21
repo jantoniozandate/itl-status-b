@@ -4,10 +4,16 @@ import 'package:itlstatusb/src/models/user.dart';
 import 'package:flutter/foundation.dart';
 // import 'package:compound/services/firestore_service.dart';
 import './api_service.dart';
+import 'dart:async';
+import 'dart:io';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+
+const String SESSION_KEY = 'session';
 
 class AuthenticationService {
   // final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
   // final FirestoreService _firestoreService = locator<FirestoreService>();
+  final storage = new FlutterSecureStorage();
 
   User _currentUser;
   User get currentUser => _currentUser;
@@ -56,16 +62,31 @@ class AuthenticationService {
     }
   }
 
+  // Fetch from memory or local storage
   Future<bool> isUserLoggedIn() async {
-    return true;
+    try {
+      if (_currentUser != null && _currentUser.id != '') {
+        return true;
+      }
+      
+      String usr = await storage.read(key: SESSION_KEY);
+
+      return usr != null && usr != ''; 
+    } catch (e) {
+      return false;
+    }
+    // return ;
     // var user = await _firebaseAuth.currentUser();
     // await _populateCurrentUser(user);
     // return user != null;
   }
 
+  // Update memory and write to local storage
   Future _populateCurrentUser(User user) async {
     if (user != null) {
       _currentUser = user;
+      String value = user.toJson().toString();
+      await storage.write(key: SESSION_KEY, value: value);
       // _currentUser = await _firestoreService.getUser(user.uid);
     }
   }
