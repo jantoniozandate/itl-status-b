@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:itlstatusb/src/pages/Welcome/components/welcome.component.body.dart';
+import 'package:itlstatusb/src/pages/Welcome/components/welcome.body.dart';
 import 'package:stacked/stacked.dart';
 
 import './welcome.page.model.dart';
