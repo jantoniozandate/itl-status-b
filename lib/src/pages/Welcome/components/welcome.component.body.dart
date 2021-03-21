@@ -2,10 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:itlstatusb/src/components/roudedbutton.component.dart';
 import 'background.welcome.dart';
-import 'package:itlstatusb/src/pages/Login/login.page.dart';
+// import 'package:stacked/stacked.dart';
+// import 'package:itlstatusb/src/pages/Login/login.page.dart';
 
+import '../welcome.page.model.dart';
 
 class WelcomeBody extends StatelessWidget {
+  final WelcomePageModel model;
+  const WelcomeBody({Key key, this.model} ) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -27,35 +32,23 @@ class WelcomeBody extends StatelessWidget {
             RoundedButton(
               text: "LOGIN",
               press: () {
-                Navigator.push(
-                    context,
-                    new MaterialPageRoute(
-                        builder: (context) => new LoginPage()));
+                this.model.navigateToLogin();
+                // Navigator.push(
+                //     context,
+                //     new MaterialPageRoute(
+                //         builder: (context) => new LoginPage()));
               },
             ),
             RoundedButton(
                 text: "REGISTER",
-                press: () {},
+                press: () {
+                  this.model.navigateToRegister();
+                },
                 color: Colors.blue[100],
                 textColor: Colors.black),
           ],
         ),
       ),
     );
-
-    // return Container(
-    //     height: size.height,
-    //     width: size.width,
-    //     child: Stack(
-    //       alignment: Alignment.center,
-    //       children: <Widget>[
-    //         Column(
-    //           mainAxisAlignment: MainAxisAlignment.center,
-    //           children: [
-
-    //           ],
-    //         )
-    //       ],
-    //     ));
   }
 }
