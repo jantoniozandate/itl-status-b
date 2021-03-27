@@ -21,7 +21,7 @@ class WelcomeBody extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text('Bienvenido a ITL Status',
-                style: TextStyle(fontWeight: FontWeight.bold)),
+                style: TextStyle(fontWeight: FontWeight.w300, fontSize: 20)),
             SizedBox(
               height: size.height * 0.03,
             ),

@@ -23,6 +23,6 @@ class WelcomePageModel extends BaseModel {
 
   void checkLogin() async {
     bool isLoggedIn = await _authenticationService.isUserLoggedIn();
-    // if (isLoggedIn) _navigationService.navigateTo(HomePageRoute);
+    if (isLoggedIn) _navigationService.navigateTo(HomePageRoute);
   }
 }
