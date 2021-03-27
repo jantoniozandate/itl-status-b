@@ -7,8 +7,6 @@ import 'package:itlstatusb/src/services/navigation_service.dart';
 import 'package:itlstatusb/src/services/dialog_service.dart';
 
 // Pages
-import 'package:itlstatusb/src/pages/home.page.dart';
-import 'package:itlstatusb/src/pages/message.page.dart';
 import 'package:itlstatusb/src/pages/Login/login.page.dart';
 import 'package:itlstatusb/src/pages/Welcome/welcome.page.dart';
 
