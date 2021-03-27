@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:itlstatusb/locator.dart';
 import 'package:itlstatusb/src/models/user.dart';
 // import 'package:firebase_auth/firebase_auth.dart';
@@ -71,21 +73,25 @@ class AuthenticationService {
       
       String usr = await storage.read(key: SESSION_KEY);
 
-      return usr != null && usr != ''; 
+      if (usr != null && usr != '') {
+        dynamic json = jsonDecode(usr);
+        User user = User.fromJson(json);
+        await _populateCurrentUser(user);
+        return true;
+      }
+
+      return false;
     } catch (e) {
       return false;
     }
-    // return ;
-    // var user = await _firebaseAuth.currentUser();
-    // await _populateCurrentUser(user);
-    // return user != null;
   }
 
   // Update memory and write to local storage
   Future _populateCurrentUser(User user) async {
     if (user != null) {
       _currentUser = user;
-      String value = user.toJson().toString();
+      
+      String value = jsonEncode(user.toJson());
       await storage.delete(key: SESSION_KEY);
       await storage.write(key: SESSION_KEY, value: value);
       // _currentUser = await _firestoreService.getUser(user.uid);

@@ -27,16 +27,26 @@ class User {
         lastLogin = data['lastLogin'] ?? '',
         publicKey = data['publicKey'] ?? '',
         password = '';
+    
+  User.fromJson(dynamic data) : 
+        id = data['_id'],
+        fullName = data['fullName'] ?? '',
+        email = data['email'] ?? '',
+        username = data['username'] ?? '',
+        sessionId = data['sessionId'] ?? '',
+        lastLogin = data['lastLogin'] ?? '',
+        publicKey = data['publicKey'] ?? '',
+        password = '';
 
   Map<String, dynamic> toJson() {
     return {
-      'id': id,
-      'fullName': fullName,
-      'email': email,
-      'username': username,
-      'sessionId': sessionId,
-      'lastLogin': lastLogin,
-      'publicKey': publicKey,
+      "_id": id,
+      "fullName": fullName,
+      "email": email,
+      "username": username,
+      "sessionId": sessionId,
+      "lastLogin": lastLogin,
+      "publicKey": publicKey,
     };
   }
 
