@@ -24,6 +24,7 @@ class Body extends StatefulWidget {
 class _BodyState extends State<Body> {
   String login;
   String password;
+  bool loading = false;
   final DialogService _dialogService = locator<DialogService>();
   final AuthenticationService _authenticationService =
       locator<AuthenticationService>();
@@ -34,6 +35,14 @@ class _BodyState extends State<Body> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    if (loading)
+      return Background(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[CircularProgressIndicator()],
+        ),
+      );
+
     return Background(
       child: SingleChildScrollView(
         child: Column(
@@ -67,11 +76,17 @@ class _BodyState extends State<Body> {
             RoundedButton(
               text: "LOGIN",
               press: () {
+                setState(() {
+                  loading = true;
+                });
                 _authenticationService
                     .loginWithEmail(email: login, password: password)
                     .then((result) {
                   if (result) {
                     try {
+                      setState(() {
+                        loading = false;
+                      });
                       super.widget.model.navigateToHome();
                     } catch (e) {
                       print(e);
