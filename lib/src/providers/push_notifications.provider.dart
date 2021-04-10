@@ -15,6 +15,8 @@ class PushNotificationProvider {
       print(token);
       // e0T_XiWuTeyaT5FpsRmEh_:APA91bH9fxB9mC5kClsrqJDcMAxv0qi0x5WT6ApbDiDKzYwaqkPgR4t7wd_hWaYxoaeGk5NA7goNa_1d43yGgeoYp1xHUThY4a0QUUlh99T7bDj2emQChsPmZhKx4nuALJxCgu9br7iW
     });
+    
+    _firebaseMessaging.subscribeToTopic('all');
 
     _firebaseMessaging.configure(
       onMessage: (info) {

@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:itlstatusb/src/providers/push_notifications.provider.dart';
+// import 'package:itlstatusb/src/providers/push_notifications.provider.dart';
 import 'locator.dart';
 import './src/pages/router.dart';
 import './src/managers/dialog_manager.dart';
 import 'package:itlstatusb/src/services/navigation_service.dart';
 import 'package:itlstatusb/src/services/dialog_service.dart';
+import 'package:itlstatusb/src/providers/push_notifications.provider.dart';
 
 // Pages
 import 'package:itlstatusb/src/pages/Login/login.page.dart';
@@ -19,6 +20,8 @@ import 'package:flutter_dotenv/flutter_dotenv.dart' as DotEnv;
 Future main() async {
   await DotEnv.load(fileName: '.env');
   setupLocator();
+  PushNotificationProvider pushNotificationService = locator<PushNotificationProvider>();
+  pushNotificationService.initNotifications();
   runApp(MyApp());
 }
 

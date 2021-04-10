@@ -15,6 +15,8 @@ class PushNotificationService {
       _fcm.requestNotificationPermissions(IosNotificationSettings());
     }
 
+    _fcm.subscribeToTopic('all');
+
     _fcm.configure(
       // Called when the app is in the foreground and we receive a push notification
       onMessage: (Map<String, dynamic> message) async {
