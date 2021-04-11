@@ -9,8 +9,7 @@ import './api_service.dart';
 import 'dart:async';
 import 'dart:io';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-
-const String SESSION_KEY = 'session';
+import 'package:itlstatusb/constants.dart';
 
 class AuthenticationService {
   // final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
@@ -25,7 +24,7 @@ class AuthenticationService {
     @required String password,
   }) async {
     try {
-      var authResult = await doLogin(
+      var authResult = await APIService.doLogin(
         email,
         password,
       );
@@ -67,17 +66,19 @@ class AuthenticationService {
   // Fetch from memory or local storage
   Future<bool> isUserLoggedIn() async {
     try {
-      if (_currentUser != null && _currentUser.id != '') {
+      if (_currentUser != null &&
+          _currentUser.id != '' &&
+          validateSessionExpiration(_currentUser)) {
         return true;
       }
-      
+
       String usr = await storage.read(key: SESSION_KEY);
 
       if (usr != null && usr != '') {
         dynamic json = jsonDecode(usr);
         User user = User.fromJson(json);
         await _populateCurrentUser(user);
-        return true;
+        return validateSessionExpiration(user);
       }
 
       return false;
@@ -86,11 +87,17 @@ class AuthenticationService {
     }
   }
 
+  validateSessionExpiration(User user) {
+    int limitSessionAge =
+        DateTime.now().toUtc().millisecondsSinceEpoch - ONE_DAY_IN_MS;
+    return (user.sessionExpiresAt > limitSessionAge);
+  }
+
   // Update memory and write to local storage
   Future _populateCurrentUser(User user) async {
     if (user != null) {
       _currentUser = user;
-      
+
       String value = jsonEncode(user.toJson());
       await storage.delete(key: SESSION_KEY);
       await storage.write(key: SESSION_KEY, value: value);

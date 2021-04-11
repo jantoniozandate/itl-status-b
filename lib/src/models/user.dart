@@ -7,6 +7,7 @@ class User {
   final String lastLogin;
   final String publicKey;
   final String password;
+  final int sessionExpiresAt;
 
   User(
       {this.email,
@@ -16,7 +17,8 @@ class User {
       this.sessionId = '',
       this.lastLogin = '',
       this.publicKey = '',
-      this.password = ''});
+      this.password = '',
+      this.sessionExpiresAt = -1});
 
   User.fromData(Map<String, dynamic> data)
       : id = data['_id'],
@@ -26,7 +28,8 @@ class User {
         sessionId = data['sessionId'] ?? '',
         lastLogin = data['lastLogin'] ?? '',
         publicKey = data['publicKey'] ?? '',
-        password = '';
+        password = '',
+        sessionExpiresAt = data['expiresAt'] ?? -1;
     
   User.fromJson(dynamic data) : 
         id = data['_id'],
@@ -36,7 +39,8 @@ class User {
         sessionId = data['sessionId'] ?? '',
         lastLogin = data['lastLogin'] ?? '',
         publicKey = data['publicKey'] ?? '',
-        password = '';
+        password = '',
+        sessionExpiresAt = data['expiresAt'] ?? -1;
 
   Map<String, dynamic> toJson() {
     return {
@@ -47,6 +51,7 @@ class User {
       "sessionId": sessionId,
       "lastLogin": lastLogin,
       "publicKey": publicKey,
+      "expiresAt": sessionExpiresAt
     };
   }
 
