@@ -7,6 +7,8 @@ import 'package:itlstatusb/src/services/navigation_service.dart';
 import 'package:itlstatusb/src/services/dialog_service.dart';
 import 'package:itlstatusb/src/providers/push_notifications.provider.dart';
 
+import 'package:hexcolor/hexcolor.dart';
+
 // Pages
 import 'package:itlstatusb/src/pages/Login/login.page.dart';
 import 'package:itlstatusb/src/pages/Welcome/welcome.page.dart';
@@ -39,7 +41,7 @@ class MyApp extends StatelessWidget {
       navigatorKey: locator<NavigationService>().navigationKey,
       theme: ThemeData(
         primarySwatch: Colors.blue,
-        scaffoldBackgroundColor: Colors.white,
+        scaffoldBackgroundColor: HexColor('#1E1E1E'),
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: WelcomePage(),

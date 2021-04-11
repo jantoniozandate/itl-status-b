@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:hexcolor/hexcolor.dart';
 
 // Screens
-import 'package:itlstatusb/src/screens/screenNow.dart';
+import 'package:itlstatusb/src/screens/ScreenNow/screenNow.dart';
 
 class BottomNavigatorHome extends StatefulWidget {
   BottomNavigatorHome({Key key}) : super(key: key);
@@ -11,7 +12,7 @@ class BottomNavigatorHome extends StatefulWidget {
 }
 
 class BottomNavigatorHomeState extends State<BottomNavigatorHome> {
-  int currentIndex = 0;
+  int currentIndex = 1;
   final List<Widget> viewContainer = [
     Column(mainAxisAlignment: MainAxisAlignment.center, children: [
       Text('Hola'),
@@ -32,7 +33,7 @@ class BottomNavigatorHomeState extends State<BottomNavigatorHome> {
           Icons.home,
         ),
         label: 'Home',
-        backgroundColor: Colors.blue),
+        ),
     BottomNavigationBarItem(
         icon: Icon(Icons.timer), label: 'Now', backgroundColor: Colors.red),
     BottomNavigationBarItem(
@@ -54,8 +55,9 @@ class BottomNavigatorHomeState extends State<BottomNavigatorHome> {
           child: IndexedStack(index: currentIndex, children: viewContainer)),
       bottomNavigationBar: BottomNavigationBar(
           currentIndex: currentIndex,
-          type: BottomNavigationBarType.shifting,
-          backgroundColor: Colors.blue,
+          type: BottomNavigationBarType.fixed,
+          // backgroundColor: Colors.blue,
+          backgroundColor: HexColor('#19396A'),
           selectedItemColor: Colors.white,
           onTap: (int newIndex) {
             setState(() {

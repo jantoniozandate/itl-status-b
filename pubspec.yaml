@@ -38,6 +38,9 @@ dependencies:
   http: 
   flutter_dotenv: 
   flutter_secure_storage:
+  flutter_swiper: ^1.1.6
+  hexcolor: ^1.0.5
+  flutter_page_indicator:
 
 dev_dependencies:
   flutter_test:

@@ -11,6 +11,11 @@ class Carga {
   final String professor;
   final ScheduleWeek schedule;
 
+  ScheduleDay getTodaySchedule() {
+    int dayOfWeek = DateTime.now().day;
+    return schedule.getFromDayOfWeekNumber(dayOfWeek);
+  }
+
   Carga(
       {this.id,
       this.students,

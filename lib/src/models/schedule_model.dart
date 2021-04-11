@@ -1,6 +1,17 @@
 class ScheduleWeek {
   final ScheduleDay monday, tuesday, wednesday, thursday, friday;
 
+  ScheduleDay getFromDayOfWeekNumber(int dayOfWeekNumber) {
+    var dayOfWeekDictionary = {
+      1: monday,
+      2: tuesday,
+      3: wednesday,
+      4: thursday,
+      5: friday
+    };
+    return dayOfWeekDictionary[dayOfWeekNumber] ?? monday;
+  }
+
   ScheduleWeek(
       this.monday, this.tuesday, this.wednesday, this.thursday, this.friday);
 
@@ -42,10 +53,6 @@ class ScheduleDay {
         room = data['room'] ?? '';
 
   Map<String, dynamic> toJson() {
-    return {
-      "from": from,
-      "to": to,
-      "room": room
-    };
+    return {"from": from, "to": to, "room": room};
   }
 }
