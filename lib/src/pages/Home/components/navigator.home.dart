@@ -13,7 +13,7 @@ class BottomNavigatorHome extends StatefulWidget {
 class BottomNavigatorHomeState extends State<BottomNavigatorHome> {
   int currentIndex = 0;
   final List<Widget> viewContainer = [
-    NowScreen(),
+    ScreenNow(),
     Column(mainAxisAlignment: MainAxisAlignment.center, children: [
       Text('Hola'),
     ])

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class NowScreen extends StatelessWidget {
-  const NowScreen({Key key}) : super(key: key);
+class ScreenNow extends StatelessWidget {
+  const ScreenNow({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
