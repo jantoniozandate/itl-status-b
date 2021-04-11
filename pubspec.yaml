@@ -41,6 +41,7 @@ dependencies:
   flutter_swiper: ^1.1.6
   hexcolor: ^1.0.5
   flutter_page_indicator:
+  fl_chart: ^0.35.0
 
 dev_dependencies:
   flutter_test:
