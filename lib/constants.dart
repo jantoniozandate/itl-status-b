@@ -8,3 +8,8 @@ const String RegisterPageRoute = 'RegisterPage';
 const String HomePageRoute = 'HomePage';
 const String WelcomePageRoute = 'WelcomePage';
 const String NotificationPageRoute = 'NotificationPage';
+
+
+const String SESSION_KEY = 'session';
+
+const int ONE_DAY_IN_MS = 24 * 60 * 60 * 1000;
