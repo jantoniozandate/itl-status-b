@@ -17,14 +17,26 @@ class APIService {
     // return result;
   }
 
+  static Future<User> doRegister(username, email, password) async {
+    var result = await http.post(registerUrl,
+        body: {'username': username, 'login': email, 'password': password},
+        headers: {'X-API': xAPIKey});
+    if (result.statusCode >= 300) return null;
+    var jsonResponse = convert.jsonDecode(result.body)['data'];
+    jsonResponse['expiresAt'] = DateTime.now().toUtc().millisecondsSinceEpoch;
+    User user = User.fromData(jsonResponse);
+    return user;
+    // return result;
+  }
+
   static Future<Status> getStatus(User user) async {
     Map<String, String> queryParams = {
       "id": user.id,
       "sessionId": user.sessionId
     };
-    String queryString = getCargaURL + '?' + Uri(queryParameters: queryParams).query;
-    var result = await http
-        .get(queryString, headers: {'X-API': xAPIKey});
+    String queryString =
+        getCargaURL + '?' + Uri(queryParameters: queryParams).query;
+    var result = await http.get(queryString, headers: {'X-API': xAPIKey});
 
     if (result.statusCode >= 300) return null;
     var jsonResponse = convert.jsonDecode(result.body)['data'];
