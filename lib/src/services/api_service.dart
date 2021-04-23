@@ -19,7 +19,7 @@ class APIService {
 
   static Future<User> doRegister(username, email, password) async {
     var result = await http.post(registerUrl,
-        body: {'username': username, 'login': email, 'password': password},
+        body: {'username': username, 'email': email, 'password': password},
         headers: {'X-API': xAPIKey});
     if (result.statusCode >= 300) return null;
     var jsonResponse = convert.jsonDecode(result.body)['data'];
