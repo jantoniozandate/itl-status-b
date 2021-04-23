@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:itlstatusb/src/screens/ScreenKardex/screenKardex.dart';
 
 // Screens
 import 'package:itlstatusb/src/screens/ScreenNow/screenNow.dart';
@@ -18,10 +19,7 @@ class BottomNavigatorHomeState extends State<BottomNavigatorHome> {
       Text('Hola'),
     ]),
     ScreenNow(),
-    Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [Text('Kardex')],
-    ),
+    ScreenKardex(), 
     Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [Text('Cuenta')],
