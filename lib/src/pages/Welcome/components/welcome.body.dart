@@ -3,13 +3,13 @@ import 'package:flutter_svg/svg.dart';
 import 'package:itlstatusb/src/components/roudedbutton.component.dart';
 import 'background.welcome.dart';
 // import 'package:stacked/stacked.dart';
-// import 'package:itlstatusb/src/pages/Login/login.page.dart';
+// import 'package:itlstatusb/src/pages/Login/register.page.dart';
 
 import '../welcome.page.model.dart';
 
 class WelcomeBody extends StatelessWidget {
   final WelcomePageModel model;
-  const WelcomeBody({Key key, this.model} ) : super(key: key);
+  const WelcomeBody({Key key, this.model}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

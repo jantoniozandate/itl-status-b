@@ -35,6 +35,24 @@ class AuthenticationService {
     }
   }
 
+  Future registerWithEmail({
+    @required String username,
+    @required String mail,
+    @required String password,
+  }) async {
+    try {
+      var authResult = await APIService.doRegister(
+        username,
+        mail,
+        password,
+      );
+      await _populateCurrentUser(authResult);
+      return authResult != null;
+    } catch (e) {
+      return e.message;
+    }
+  }
+
   Future signUpWithEmail({
     @required String email,
     @required String password,
