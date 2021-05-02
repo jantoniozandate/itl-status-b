@@ -41,9 +41,17 @@ class MyApp extends StatelessWidget {
       navigatorKey: locator<NavigationService>().navigationKey,
       theme: ThemeData(
         primarySwatch: Colors.blue,
-        scaffoldBackgroundColor: HexColor('#1E1E1E'),
+        brightness: Brightness.light,
         visualDensity: VisualDensity.adaptivePlatformDensity,
+        scaffoldBackgroundColor: HexColor('#282C34')
       ),
+      // darkTheme: ThemeData(
+      //   brightness: Brightness.dark,
+      //   scaffoldBackgroundColor: HexColor('#282C34'),
+      //   primarySwatch: Colors.blue,
+      //   visualDensity: VisualDensity.adaptivePlatformDensity,
+      // ),
+      // themeMode: ThemeMode.dark,
       home: WelcomePage(),
       onGenerateRoute: generateRoute,
     );
