@@ -82,18 +82,19 @@ class _BodyState extends State<Body> {
                 _authenticationService
                     .loginWithEmail(email: login, password: password)
                     .then((result) {
+                  setState(() {
+                    loading = false;
+                  });
                   if (result) {
                     try {
-                      setState(() {
-                        loading = false;
-                      });
                       super.widget.model.navigateToHome();
                     } catch (e) {
                       print(e);
-                      _dialogService.showDialog(
-                          title: 'Algo salió mal :(',
-                          description: 'Credenciales invalidas');
                     }
+                  } else {
+                    _dialogService.showDialog(
+                        title: 'Algo salió mal :(',
+                        description: 'Credenciales invalidas');
                   }
                 });
                 // doLogin(login, password).then((result) {
