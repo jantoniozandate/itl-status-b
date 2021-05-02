@@ -4,9 +4,12 @@ import 'package:itlstatusb/constants.dart';
 
 class RoundedPasswordField extends StatefulWidget {
   final ValueChanged<String> onChanged;
+  final String hint;
+
   const RoundedPasswordField({
     Key key,
     this.onChanged,
+    this.hint,
   }) : super(key: key);
 
   @override
@@ -15,6 +18,8 @@ class RoundedPasswordField extends StatefulWidget {
 
 class _RoundedPasswordFieldState extends State<RoundedPasswordField> {
   bool isObscureText = true;
+
+
   @override
   Widget build(BuildContext context) {
     return TextFieldContainer(
@@ -23,7 +28,7 @@ class _RoundedPasswordFieldState extends State<RoundedPasswordField> {
         onChanged: widget.onChanged,
         cursorColor: kPrimaryColor,
         decoration: InputDecoration(
-          hintText: "Contraseña",
+          hintText: widget.hint ?? "Contraseña",
           icon: Icon(
             Icons.lock,
             color: kPrimaryColor,
