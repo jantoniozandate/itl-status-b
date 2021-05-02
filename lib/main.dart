@@ -10,7 +10,6 @@ import 'package:itlstatusb/src/providers/push_notifications.provider.dart';
 import 'package:hexcolor/hexcolor.dart';
 
 // Pages
-import 'package:itlstatusb/src/pages/Login/login.page.dart';
 import 'package:itlstatusb/src/pages/Welcome/welcome.page.dart';
 
 // Constants
