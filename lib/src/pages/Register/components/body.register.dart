@@ -118,7 +118,9 @@ class _BodyState extends State<Body> {
             ),
             SizedBox(height: size.height * 0.03),
             AlreadyHaveAnAccountCheck(
+              login: false,
               press: () {
+                super.widget.model.navigateToLogin();
                 // Navigator.push(
                 //   context,
                 //   MaterialPageRoute(
