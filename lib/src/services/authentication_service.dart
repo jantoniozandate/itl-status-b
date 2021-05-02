@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:itlstatusb/locator.dart';
+import 'package:itlstatusb/src/models/account_model.dart';
 import 'package:itlstatusb/src/models/user.dart';
 // import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
@@ -53,32 +54,24 @@ class AuthenticationService {
     }
   }
 
-  Future signUpWithEmail({
-    @required String email,
-    @required String password,
-    @required String fullName,
-    @required String role,
+  Future updateAccount({
+    @required Account userAccount
   }) async {
     try {
-      // var authResult = await _firebaseAuth.createUserWithEmailAndPassword(
-      //   email: email,
-      //   password: password,
-      // );
-
-      // // create a new user profile on firestore
-      // _currentUser = User(
-      //   id: authResult.user.uid,
-      //   email: email,
-      //   fullName: fullName,
-      //   userRole: role,
-      // );
-
-      // await _firestoreService.createUser(_currentUser);
-
-      // return authResult.user != null;
+      final updateResult = await APIService.updateStatus(userAccount);
+      return updateResult != null;
     } catch (e) {
+      print(e);
       return e.message;
     }
+  }
+
+  Future terminateSession() async {
+    try {
+      _currentUser = null;
+      await storage.delete(key: SESSION_KEY);
+    } catch (e) {
+    }    
   }
 
   // Fetch from memory or local storage

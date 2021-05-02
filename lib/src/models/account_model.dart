@@ -1,12 +1,16 @@
 import 'dart:convert';
 
 import 'package:itlstatusb/src/models/user.dart';
-import 'package:itlstatusb/src/utils/RSA_utils.dart';
+// import 'package:itlstatusb/src/utils/RSA_utils.dart';
+import 'package:encrypt/encrypt.dart';
+import 'package:pointycastle/asymmetric/pkcs1.dart';
+import 'package:pointycastle/pointycastle.dart';
+
 
 class Account {
   final String userId;
-  final String controlNum;
-  final String controlPwd;
+  String controlNum;
+  String controlPwd;
   String encControlNum;
   String encControlPwd;
   final User user;
@@ -36,17 +40,21 @@ class Account {
         user = User.fromData(data['user']);
 
   Map<String, dynamic> encryptControlData() {
-    final rsaUtils = RSAUtils(user.publicKey, null);
+    final publicKey = RSAKeyParser().parse(user.publicKey) as RSAPublicKey;
+    final encrypter = Encrypter(RSA(publicKey: publicKey, encoding: RSAEncoding.OAEP));
 
-    encControlNum =
-        utf8.decode(rsaUtils.encryptByPublicKey(utf8.encode(controlNum)));
+    Codec<String, String> stringToBase64 = utf8.fuse(base64);
 
-    encControlPwd =
-        utf8.decode(rsaUtils.encryptByPublicKey(utf8.encode(controlPwd)));
+    final encControlNum = encrypter.encrypt(controlNum).base64;
+    final encControlPwd = encrypter.encrypt(controlPwd).base64;
 
     return {
       "controlNum": encControlNum,
-      "controlPwd": encControlPwd
+      "controlPwd": encControlPwd,
+      "id": user.id,
+      "sessionId": user.sessionId,
+      "email": user.email,
+      "username": user.username
     };
   }
 

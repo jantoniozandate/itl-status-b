@@ -1,5 +1,6 @@
 import 'dart:convert' as convert;
 import 'package:http/http.dart' as http;
+import 'package:itlstatusb/src/models/account_model.dart';
 import 'package:itlstatusb/src/models/user.dart';
 import 'package:itlstatusb/src/models/status_model.dart';
 import 'package:itlstatusb/src/config/config.dart';
@@ -45,7 +46,28 @@ class APIService {
     return status;
   }
 
-  static Future<Status> updateAccount(User user) async {
-    
+  static Future<User> updateUser(Account user) async {
+    // var
+  }
+
+  static Future<Status> updateStatus(Account userAccount) async {
+    try {
+      var data = userAccount.encryptControlData();
+      var queryString = updateUserUrl +
+          '?' +
+          Uri(queryParameters: {"sessionId": userAccount.user.sessionId}).query;
+
+
+      var result = await http.put(queryString,
+          headers: {'X-API': xAPIKey}, body: data);
+
+      if (result.statusCode >= 300) return null;
+
+      Status status = await getStatus(userAccount.user);
+
+      return status;
+    } catch (e) {
+      return null;
+    }
   }
 }
