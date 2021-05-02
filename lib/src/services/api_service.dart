@@ -44,4 +44,8 @@ class APIService {
     Status status = Status.fromData(jsonResponse);
     return status;
   }
+
+  static Future<Status> updateAccount(User user) async {
+    
+  }
 }

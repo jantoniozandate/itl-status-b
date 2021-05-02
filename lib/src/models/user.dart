@@ -44,14 +44,11 @@ class User {
 
   Map<String, dynamic> toJson() {
     return {
-      "_id": id,
+      "id": id,
       "fullName": fullName,
       "email": email,
       "username": username,
       "sessionId": sessionId,
-      "lastLogin": lastLogin,
-      "publicKey": publicKey,
-      "expiresAt": sessionExpiresAt
     };
   }
 

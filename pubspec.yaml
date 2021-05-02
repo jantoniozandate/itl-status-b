@@ -42,6 +42,9 @@ dependencies:
   hexcolor: ^1.0.5
   flutter_page_indicator:
   fl_chart: ^0.35.0
+  encrypt: ^5.0.0
+  asn1lib: ^1.0.0
+  pointycastle: ^3.0.1
 
 dev_dependencies:
   flutter_test:
